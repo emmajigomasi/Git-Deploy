@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ToDo App</title>
+  
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 17px 20px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      background: linear-gradient(115deg, #7958f5 0%, #a64ee7 55%, #d83fba 100%);
+      font-family: Arial, Helvetica, sans-serif;
+      color: #292d33;
+    }
+    .todo-card {
+      width: min(524px, 100%);
+      min-height: 198px;
+      margin-left: 9px;
+      padding: 22px 21px 28px;
+      background: #fff;
+      border-radius: 9px;
+      box-shadow: 0 2px 8px rgba(40, 20, 70, .08);
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 19px;
+      text-align: center;
+      font-size: 24px;
+      line-height: 1.2;
+      font-weight: 700;
+      letter-spacing: -.35px;
+    }
+    .sun { margin-left: 4px; font-size: 22px; }
+    .field {
+      width: 100%;
+      height: 37px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 14px;
+      background: #f2f3f4;
+      border: 1px solid #e0e2e4;
+      border-radius: 7px;
+      box-shadow: 0 2px 4px rgba(0,0,0,.10);
+    }
+    .field input {
+      width: 100%;
+      min-width: 0;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: #333;
+      font: 12px Arial, sans-serif;
+    }
+    input::placeholder { color: #9aa0a6; opacity: 1; }
+    .search { margin-bottom: 16px; }
+    .add-row {
+      height: 37px;
+      display: flex;
+      overflow: hidden;
+      background: #f2f3f4;
+      border: 1px solid #e0e2e4;
+      border-radius: 7px;
+      box-shadow: 0 2px 4px rgba(0,0,0,.10);
+    }
+    .add-row .emoji { align-self: center; padding-left: 14px; font-size: 13px; }
+    .add-row input {
+      flex: 1;
+      min-width: 0;
+      padding: 0 7px;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      font: 12px Arial, sans-serif;
+    }
+    button {
+      width: 55px;
+      border: 0;
+      background: #3478e8;
+      color: white;
+      font: 12px Arial, sans-serif;
+      cursor: pointer;
+      transition: background .15s ease;
+    }
+    button:hover { background: #2466d2; }
+    button:focus-visible, input:focus-visible { outline: 2px solid #7aa7f5; outline-offset: 2px; }
+    .tasks { margin: 15px 0 0; padding: 0; list-style: none; }
+    .task {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 3px;
+      border-bottom: 1px solid #eceef0;
+      font-size: 13px;
+      overflow-wrap: anywhere;
+    }
+    .task span { flex: 1; }
+    .task.done span { color: #9aa0a6; text-decoration: line-through; }
+    .task input { accent-color: #3478e8; }
+    .delete {
+      width: auto;
+      padding: 4px 7px;
+      border-radius: 4px;
+      background: #efeff1;
+      color: #666;
+      font-size: 11px;
+    }
+    .delete:hover { background: #ffe5e5; color: #c33; }
+    .empty { margin: 13px 2px 0; color: #999; font-size: 12px; text-align: center; }
+    @media (max-width: 480px) {
+      body { padding: 16px 12px; }
+      .todo-card { margin-left: 0; padding: 22px 16px 25px; }
+      h1 { font-size: 23px; }
+    }
+  </style>
+  
+</head>
+<body>
+  <main class="todo-card">
+    <h1>ToDo App <span class="sun" aria-hidden="true">🌟</span></h1>
+
+    <div class="field search">
+      <span aria-hidden="true">🔍</span>
+      <input id="searchInput" type="search" placeholder="Search tasks..." aria-label="Search tasks">
+    </div>
+
+    <form class="add-row" id="todoForm">
+      <span class="emoji" aria-hidden="true">✍️</span>
+      <input id="taskInput" type="text" placeholder="Add a new task..." aria-label="Add a new task" autocomplete="off">
+      <button type="submit">Add</button>
+    </form>
+
+    <ul class="tasks" id="taskList" aria-live="polite"></ul>
+    <p class="empty" id="emptyMessage" hidden>No tasks yet. Add one above!</p>
+  </main>
+
+<script src="script.js" defer></script>
+</body>
+</html>
